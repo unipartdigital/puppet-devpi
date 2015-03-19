@@ -1,0 +1,12 @@
+# -*- upstart -*- 
+##################################
+# THIS FILE IS MANAGED BY PUPPET #
+##################################
+# /etc/init/devpi.conf
+description "devpi"
+ 
+start on runlevel [2345]
+stop on runlevel [!2345]
+respawn
+ 
+exec su - <%= @user %> -c "devpi-server --host <%= @listen_host %> --port <%= @listen_port %> --refresh <%= @refresh %> --serverdir <%= @server_dir %>"
