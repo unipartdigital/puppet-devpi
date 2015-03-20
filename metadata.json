@@ -2,11 +2,11 @@
   "name": "unibet-devpi",
   "version": "0.1.0",
   "author": "unibet",
-  "summary": null,
+  "summary": "Puppet module to manage python devpi repositories,
   "license": "Apache 2.0",
-  "source": "",
-  "project_page": null,
-  "issues_url": null,
+  "source": "https://github.com/unibet/puppet-devpi.git",
+  "project_page": "https://github.com/unibet/puppet-devpi",
+  "issues_url": "https://github.com/unibet/puppet-devpi/issues",
   "dependencies": [
     {
       "name": "puppetlabs-stdlib",
@@ -14,4 +14,3 @@
     }
   ]
 }
-
