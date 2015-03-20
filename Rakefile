@@ -35,3 +35,8 @@ desc "Run integration tests"
 task :integration do
   sh "kitchen test all --destroy=always --parallel"
 end
+
+desc "Set patch version in metadata.json based on env var TRAVIS_BUILD_NUMBER"
+task :set_travis_version do
+  sh 'sed -i "" -e "s/\"version\": \"\([0-9]\).\([0-9]\).*\"/\"version\": \"\1.\2.${TRAVIS_BUILD_NUMBER}\"/" metadata.json' 
+end
