@@ -5,4 +5,11 @@ class devpi::package {
     provider => pip
   }
 
+  if $::devpi::client {
+    package { $::devpi::package_client:
+      ensure   => $::devpi::ensure,
+      provider => pip
+    }
+  }
+
 }

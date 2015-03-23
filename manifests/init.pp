@@ -10,6 +10,12 @@
 # [*package_name*]
 #   Name of package to install
 #
+# [*client*]
+#   Boolean if client package should be installed
+#
+# [*package_client*]
+#   Name of client package to install
+#
 # [*service_refresh*]
 #   Boolean if service should restart on config changes
 #
@@ -54,6 +60,8 @@
 class devpi (
   $ensure          = 'present',
   $package_name    = $::devpi::params::package,
+  $client          = false,
+  $package_client  = $::devpi::params::package_client,
   $service_refresh = true,
   $service_enable  = true,
   $service_ensure  = 'running',

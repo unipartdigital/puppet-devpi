@@ -3,4 +3,6 @@ package { 'python-pip': ensure => installed } ->
 exec { 'easy_install -U setuptools || exit 0':
   path => [ '/bin', '/usr/bin']
 } ->
-class { '::devpi': }
+class { '::devpi':
+  client => true
+}
