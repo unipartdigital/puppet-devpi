@@ -4,7 +4,8 @@ class devpi::config (
   $listen_host = $::devpi::listen_host,
   $listen_port = $::devpi::listen_port,
   $server_dir  = $::devpi::server_dir,
-  $refresh     = $::devpi::refresh
+  $refresh     = $::devpi::refresh,
+  $virtualenv  = $::devpi::virtualenv,
 ) {
 
   file { "/etc/init/${::devpi::service_name}.conf":

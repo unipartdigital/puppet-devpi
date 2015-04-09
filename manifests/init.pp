@@ -44,10 +44,13 @@
 #   devpi-server --port parameter
 #
 # [*refresh*]
-#   devpi-server --refresh parameter 
+#   devpi-server --refresh parameter
 #
 # [*server_dir*]
 #   devpi-server --serverdir parameter
+#
+# [*virtualenv*]
+#   Absolute path to sandboxed virtualenv directory. If set package is unmanaged
 #
 # === Examples
 #
@@ -72,16 +75,24 @@ class devpi (
   $listen_host     = '0.0.0.0',
   $listen_port     = 3141,
   $refresh         = 3600,
-  $server_dir      = $::devpi::params::server_dir
+  $server_dir      = $::devpi::params::server_dir,
+  $virtualenv      = '',
 ) inherits devpi::params {
 
   anchor { '::devpi::start': } ->
   class { '::devpi::user': } ->
-  class { '::devpi::package': } ->
   class { '::devpi::config': } ->
   class { '::devpi::files': } ->
   class { '::devpi::service': } ->
   anchor { '::devpi::end': }
+
+  if empty($virtualenv) {
+    Class['::devpi::user'] ->
+    class { '::devpi::package': } ->
+    Class['::devpi::config']
+  } else {
+    validate_absolute_path($virtualenv)
+  }
 
   if $service_refresh {
     Class['::devpi::config'] ~>
