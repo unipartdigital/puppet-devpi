@@ -1,4 +1,10 @@
 require 'spec_helper'
+
+provider = {
+  6 => 'upstart',
+  7 => 'systemd'
+}
+
 describe 'devpi' do
 
   [6,7].each do |osmaj|
@@ -14,7 +20,10 @@ describe 'devpi' do
         it { should compile.with_all_deps }
         it { should_not contain_package('devpi-client') }
         it { should contain_package('devpi-server') }
-        it { should contain_service('devpi-server') }
+        it { should contain_service('devpi-server').with(
+            :provider => provider[osmaj]
+          )
+        }
         it { should contain_user('devpi') }
         it { should contain_file('/opt/devpi') }
         if osmaj == 6 then

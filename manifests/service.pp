@@ -8,7 +8,7 @@ class devpi::service inherits ::devpi::params {
   service { $::devpi::service_name:
     ensure   => $::devpi::service_ensure,
     enable   => $::devpi::service_enable,
-    provider => $provder
+    provider => $provider
   }
 
 }

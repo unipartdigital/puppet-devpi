@@ -13,10 +13,10 @@ class devpi::config (
       default => "${virtualenv}/bin/devpi-server"
     }
     file { "/usr/lib/systemd/system/${::devpi::service_name}.service":
-      ensure => $::devpi::ensure,
-      owner  => 'root',
-      group  => 'root',
-      mode   => '0644',
+      ensure  => $::devpi::ensure,
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
       content => template("${module_name}/systemd.service.erb")
     }
   } else {
