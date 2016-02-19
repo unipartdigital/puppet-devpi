@@ -1,0 +1,12 @@
+[Unit]
+Description=devpi
+Wants=basic.target
+After=basic.target network.target
+
+[Service]
+User=<%= @user %>
+Group=<%= @group %>
+ExecStart=<%= @devpi_path %> --host <%= @listen_host %> --port <%= @listen_port %> --serverdir <%= @server_dir %>
+
+[Install]
+WantedBy=multi-user.target

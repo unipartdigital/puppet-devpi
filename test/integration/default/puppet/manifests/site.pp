@@ -6,3 +6,12 @@ exec { 'easy_install -U setuptools || exit 0':
 class { '::devpi':
   client => true
 }
+
+if $::operatingsystemmajrelease == '7' {
+  file { '/usr/bin/pip-python':
+    ensure  => link,
+    target  => '/usr/bin/pip',
+    require => Package['python-pip'],
+    before  => Class['::devpi']
+  }
+}

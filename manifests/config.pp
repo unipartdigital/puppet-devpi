@@ -4,16 +4,29 @@ class devpi::config (
   $listen_host = $::devpi::listen_host,
   $listen_port = $::devpi::listen_port,
   $server_dir  = $::devpi::server_dir,
-  $refresh     = $::devpi::refresh,
   $virtualenv  = $::devpi::virtualenv,
-) {
+) inherits ::devpi::params {
 
-  file { "/etc/init/${::devpi::service_name}.conf":
-    ensure  => $::devpi::ensure,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
-    content => template("${module_name}/upstart.erb")
+  if $::devpi::params::systemd {
+    $devpi_path = $virtualenv ? {
+      '' => '/usr/bin/devpi-server',
+      default => "${virtualenv}/bin/devpi-server"
+    }
+    file { "/usr/lib/systemd/system/${::devpi::service_name}.service":
+      ensure => $::devpi::ensure,
+      owner  => 'root',
+      group  => 'root',
+      mode   => '0644',
+      content => template("${module_name}/systemd.service.erb")
+    }
+  } else {
+    file { "/etc/init/${::devpi::service_name}.conf":
+      ensure  => $::devpi::ensure,
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      content => template("${module_name}/upstart.erb")
+    }
   }
 
 }

@@ -31,6 +31,10 @@ platforms:
     driver_plugin: vagrant
     driver_config:
       box: puppetlabs/centos-6.5-64-puppet
+  - name: centos7
+    driver_plugin: vagrant
+    driver_config:
+      box: centos/7
   - name: vbox-ubuntu-server-12042
     driver_plugin: vagrant
     driver_config:

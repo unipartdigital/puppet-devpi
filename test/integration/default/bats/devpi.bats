@@ -8,7 +8,7 @@
   netstat -ltpn|grep :3141
 }
 
-@test "download virtualenv" {
+@test "pip install virtualenv through devpi proxy" {
   pip install -i http://localhost:3141/root/pypi/ virtualenv
   pip freeze | grep virtualenv
 }
