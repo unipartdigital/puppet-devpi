@@ -5,6 +5,7 @@ class devpi::params {
   $package_client = 'devpi-client'
   $service = 'devpi-server'
   $server_dir = '/opt/devpi'
+  $proxy = undef
 
   case $::osfamily {
     redhat: {

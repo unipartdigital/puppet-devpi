@@ -52,6 +52,9 @@
 # [*virtualenv*]
 #   Absolute path to sandboxed virtualenv directory. If set package is unmanaged
 #
+# [*proxy*]
+#   HTTP url and port for http_proxy and https_proxy env variables (example: http://proxy.domain.tld:80)
+#
 # === Examples
 #
 # include ::devpi
@@ -77,6 +80,7 @@ class devpi (
   $refresh         = 3600,
   $server_dir      = $::devpi::params::server_dir,
   $virtualenv      = '',
+  $proxy           = $::devpi::params::proxy,
 ) inherits devpi::params {
 
   anchor { '::devpi::start': } ->
