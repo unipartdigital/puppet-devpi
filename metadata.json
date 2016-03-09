@@ -1,6 +1,6 @@
 {
   "name": "unibet-devpi",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": "unibet",
   "summary": "Puppet module to manage python devpi repositories",
   "license": "Apache 2.0",
