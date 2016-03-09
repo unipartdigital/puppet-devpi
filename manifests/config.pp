@@ -5,6 +5,7 @@ class devpi::config (
   $listen_port = $::devpi::listen_port,
   $server_dir  = $::devpi::server_dir,
   $virtualenv  = $::devpi::virtualenv,
+  $proxy       = $::devpi::proxy,
 ) inherits ::devpi::params {
 
   if $::devpi::params::systemd {

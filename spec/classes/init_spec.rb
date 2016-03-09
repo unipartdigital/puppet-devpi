@@ -29,7 +29,7 @@ describe 'devpi' do
         if osmaj == 6 then
           it {
             should contain_file('/etc/init/devpi-server.conf')
-              .with_content(/exec su - devpi -c "devpi-server --host 0.0.0.0 --port 3141 --serverdir \/opt\/devpi"\n/)
+              .with_content(/exec sudo -E -u devpi devpi-server --host 0.0.0.0 --port 3141 --serverdir \/opt\/devpi\n/)
           }
           it {
             should_not contain_class('devpi::config').that_notifies('Class[devpi::systemd]')
@@ -64,7 +64,7 @@ describe 'devpi' do
         if osmaj == 6 then
           it {
             should contain_file('/etc/init/devpi-server.conf')
-              .with_content(/exec su - devpi -c "\/venv\/bin\/devpi-server --host 0.0.0.0 --port 3141 --serverdir \/opt\/devpi"\n/)
+              .with_content(/exec sudo -E -u devpi \/venv\/bin\/devpi-server --host 0.0.0.0 --port 3141 --serverdir \/opt\/devpi\n/)
           }
         elsif osmaj == 7 then
           it {
