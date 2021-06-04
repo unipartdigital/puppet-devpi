@@ -6,20 +6,20 @@ class devpi::params {
   $service = 'devpi-server'
   $server_dir = '/opt/devpi'
   $proxy = undef
-
-  case $::osfamily {
-    redhat: {
-      $systemd = $::operatingsystemmajrelease ? {
-        5       => false,
-        6       => false,
-        default => true
-      }
-    'Debian': {
-      $systemd = true
-    }
-    default: {
-      fail("Unsupported :osfamily ${::osfamily}")
-    }
-  }
+  $systemd = true
+  #  case $::osfamily {
+  #    redhat: {
+  #      $systemd = $::operatingsystemmajrelease ? {
+  #        5       => false,
+  #        6       => false,
+  #        default => true
+  #      }
+  #    'Debian': {
+  #      $systemd = true
+  #    }
+  #    default: {
+  #      fail("Unsupported :osfamily ${::osfamily}")
+  #    }
+  #  }
 
 }
