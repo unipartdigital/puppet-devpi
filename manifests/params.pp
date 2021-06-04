@@ -14,7 +14,7 @@ class devpi::params {
         6       => false,
         default => true
       }
-    Debian: {
+    'Debian': {
       $systemd = true
     }
     default: {
