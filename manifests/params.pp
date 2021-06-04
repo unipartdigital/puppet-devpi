@@ -14,6 +14,8 @@ class devpi::params {
         6       => false,
         default => true
       }
+    Debian: {
+      $systemd = true
     }
     default: {
       fail("Unsupported :osfamily ${::osfamily}")
