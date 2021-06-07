@@ -51,6 +51,8 @@
 #
 # [*virtualenv*]
 #   Absolute path to sandboxed virtualenv directory. If set package is unmanaged
+# [*config_file*]
+#   Absolute path to devpi configuration yaml file
 #
 # [*proxy*]
 #   HTTP url and port for http_proxy and https_proxy env variables (example: http://proxy.domain.tld:80)
@@ -81,6 +83,7 @@ class devpi (
   $server_dir      = $::devpi::params::server_dir,
   $virtualenv      = '',
   $proxy           = $::devpi::params::proxy,
+  $config_file     = '/etc/devpi/config.yaml',
 ) inherits devpi::params {
 
   anchor { '::devpi::start': } ->
