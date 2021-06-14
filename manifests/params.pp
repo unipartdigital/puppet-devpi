@@ -1,12 +1,14 @@
 class devpi::params {
-  $user = 'devpi'
-  $group = 'devpi'
-  $package = 'devpi-server'
-  $package_client = 'devpi-client'
-  $service = 'devpi-server'
-  $server_dir = '/opt/devpi'
-  $proxy = undef
-  $systemd = true
+  $user              = 'devpi'
+  $group             = 'devpi'
+  $package           = 'devpi-server'
+  $package_client    = 'devpi-client'
+  $service           = 'devpi-server'
+  $server_dir        = '/opt/devpi'
+  $proxy             = undef
+  $systemd           = true
+  $devpi_config      = '/etc/devpi/config.yaml'
+  $devpi_ldap_config = '/etc/devpi/config.yaml'
   #  case $::osfamily {
   #    redhat: {
   #      $systemd = $::operatingsystemmajrelease ? {

@@ -1,3 +1,9 @@
+# =Class devpi::package
+# 
+# Install devpi using pip3
+# 
+# TODO: add LDAP functionality
+# TODO: generalised plugin functionality
 class devpi::package {
 
   package { $::devpi::package_name:
