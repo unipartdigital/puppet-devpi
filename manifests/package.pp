@@ -11,6 +11,16 @@ class devpi::package {
     provider => pip3
   }
 
+  package { 'devpi-lockdown':
+    ensure   => $::devpi::ensure,
+    provider => pip3
+  }
+
+  package { 'devpi-ldap':
+    ensure   => $::devpi::ensure,
+    provider => pip3
+  }
+
   if $::devpi::client {
     package { $::devpi::package_client:
       ensure   => $::devpi::ensure,

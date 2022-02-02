@@ -66,50 +66,56 @@
 # Copyright 2015 North Development AB
 #
 class devpi (
-  $ensure          = 'present',
-  $package_name    = $::devpi::params::package,
-  $client          = false,
-  $package_client  = $::devpi::params::package_client,
-  $service_refresh = true,
-  $service_enable  = true,
-  $service_ensure  = 'running',
-  $service_name    = $::devpi::params::service,
-  $user            = $::devpi::params::user,
-  $group           = $::devpi::params::group,
-  $manage_user     = true,
-  $listen_host     = '0.0.0.0',
-  $listen_port     = 3141,
-  $refresh         = 3600,
-  $server_dir      = $::devpi::params::server_dir,
-  $virtualenv      = '',
-  $proxy           = $::devpi::params::proxy,
-  $config_file     = '/etc/devpi/config.yaml',
+  $ensure             = 'present',
+  $package_name       = $::devpi::params::package,
+  $client             = false,
+  $package_client     = $::devpi::params::package_client,
+  $service_refresh    = true,
+  $service_enable     = true,
+  $service_ensure     = 'running',
+  $service_name       = $::devpi::params::service,
+  $user               = $::devpi::params::user,
+  $group              = $::devpi::params::group,
+  $manage_user        = true,
+  $listen_host        = '0.0.0.0',
+  $listen_port        = 3141,
+  $refresh            = 3600,
+  $server_dir         = $::devpi::params::server_dir,
+  $virtualenv         = '',
+  $proxy              = $::devpi::params::proxy,
+  $config_dir         = $::devpi::params::config_dir,
+  $config_file        = $::devpi::params::config_file,
+  $ldap_connection    = undef,
+  $ldap_user_filter   = undef,
+  $ldap_group_base    = undef,
+  $ldap_group_filter  = undef,
+  $ldap_group_attr    = undef,
 ) inherits devpi::params {
 
-  anchor { '::devpi::start': } ->
-  class { '::devpi::user': } ->
-  class { '::devpi::config': } ->
-  class { '::devpi::files': } ->
-  class { '::devpi::service': } ->
-  anchor { '::devpi::end': }
+  anchor { '::devpi::start': }
+  ->class { '::devpi::user': }
+  ->class { '::devpi::config': }
+  ->class { '::devpi::files': }
+  ->class { '::devpi::service': }
+  ->anchor { '::devpi::end': }
 
   if empty($virtualenv) {
-    Class['::devpi::user'] ->
-    class { '::devpi::package': } ->
-    Class['::devpi::config']
+    Class['::devpi::user']
+    ->class { '::devpi::package': }
+    ->Class['::devpi::config']
   } else {
     validate_absolute_path($virtualenv)
   }
 
   if $service_refresh {
-    Class['::devpi::config'] ~>
-    Class['::devpi::service']
+    Class['::devpi::config']
+    ~>Class['::devpi::service']
   }
 
   if $::devpi::params::systemd {
-    Class['::devpi::config'] ~>
-    class {'::devpi::systemd': } ->
-    Class['::devpi::service']
+    Class['::devpi::config']
+    ~>class {'::devpi::systemd': }
+    ->Class['::devpi::service']
   }
 
 }

@@ -6,7 +6,7 @@ After=basic.target network.target
 [Service]
 User=<%= @user %>
 Group=<%= @group %>
-ExecStart=<%= @devpi_path %> -c  <%= @devpi_config %> --ldap-config  <%= @devpi_ldap_config %>
+ExecStart=<%= @devpi_path %> -c  <%= @config_file %> --ldap-config  <%= @config_file %>
 <% if @proxy -%>
 Environment=http_proxy=<%= @proxy %>
 Environment=https_proxy=<%= @proxy %>

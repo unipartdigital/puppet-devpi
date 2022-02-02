@@ -1,0 +1,12 @@
+devpi-server:
+  serverdir: <%= @server_dir %>
+  secretfile: <%= @confif_dir %>/secret
+  host: <%= @listen_host %>
+  port: <%= @listen_port %>
+devpi-ldap:
+  url: <%= @ldap_connection %>
+  user_template: <%= @ldap_user_filter %>
+  group_search:
+    base: <%= @ldap_group_base %>
+    filter: <%= @ldap_group_filter %>
+    attribute_name: <%= @ldap_group_attr %>

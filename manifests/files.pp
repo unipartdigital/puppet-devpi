@@ -11,5 +11,4 @@ class devpi::files {
     group  => $::devpi::group,
     mode   => '0700'
   }
-    
 }

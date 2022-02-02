@@ -7,8 +7,8 @@ class devpi::params {
   $server_dir        = '/opt/devpi'
   $proxy             = undef
   $systemd           = true
-  $devpi_config      = '/etc/devpi/config.yaml'
-  $devpi_ldap_config = '/etc/devpi/config.yaml'
+  $config_dir        = '/etc/devpi'
+  $config_file       = '/etc/devpi/config.yaml'
   #  case $::osfamily {
   #    redhat: {
   #      $systemd = $::operatingsystemmajrelease ? {
