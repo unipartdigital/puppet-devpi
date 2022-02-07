@@ -84,13 +84,13 @@ class devpi (
   String $server_dir,
   String $config_dir,
   String $config_file,
-  Optional[String] $virtualenv,
-  Optional[String] $proxy,
-  Optional[String] $ldap_connection,
-  Optional[String] $ldap_user_filter,
-  Optional[String] $ldap_group_base,
-  Optional[String] $ldap_group_filter,
-  Optional[String] $ldap_group_attr,
+  Optional[String] $virtualenv = undef,
+  Optional[String] $proxy = undef,
+  Optional[String] $ldap_connection = undef,
+  Optional[String] $ldap_user_filter = undef,
+  Optional[String] $ldap_group_base = undef,
+  Optional[String] $ldap_group_filter = undef,
+  Optional[String] $ldap_group_attr = undef,
 ) {
 
   anchor { '::devpi::start': }
