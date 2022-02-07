@@ -15,7 +15,7 @@ class devpi::files {
   }
 
   exec { 'devpi-init':
-    command => '/usr/local/bin/devpi-init',
+    command => "/usr/local/bin/devpi-init -c ${devpi::config_file}",
     user    => $devpi::user,
     creates => "${devpi::server_dir}/.nodeinfo",
     require => File[$devpi::server_dir]
