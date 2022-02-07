@@ -1,8 +1,8 @@
-# == Class: devpi
+#,
 #
 # Installs devpi - http://doc.devpi.net/latest/index.html
 #
-# === Parameters
+#,
 #
 # [*ensure*]
 #   Ensurable
@@ -57,40 +57,41 @@
 # [*proxy*]
 #   HTTP url and port for http_proxy and https_proxy env variables (example: http://proxy.domain.tld:80)
 #
-# === Examples
+#,
 #
 # include ::devpi
 #
-# === Copyright
+#,
 #
 # Copyright 2015 North Development AB
 #
 class devpi (
-  $ensure             = 'present',
-  $package_name       = $::devpi::params::package,
-  $client             = false,
-  $package_client     = $::devpi::params::package_client,
-  $service_refresh    = true,
-  $service_enable     = true,
-  $service_ensure     = 'running',
-  $service_name       = $::devpi::params::service,
-  $user               = $::devpi::params::user,
-  $group              = $::devpi::params::group,
-  $manage_user        = true,
-  $listen_host        = '0.0.0.0',
-  $listen_port        = 3141,
-  $refresh            = 3600,
-  $server_dir         = $::devpi::params::server_dir,
-  $virtualenv         = '',
-  $proxy              = $::devpi::params::proxy,
-  $config_dir         = $::devpi::params::config_dir,
-  $config_file        = $::devpi::params::config_file,
-  $ldap_connection    = undef,
-  $ldap_user_filter   = undef,
-  $ldap_group_base    = undef,
-  $ldap_group_filter  = undef,
-  $ldap_group_attr    = undef,
-) inherits devpi::params {
+  String $ensure,
+  String $package_name,
+  Boolean $client,
+  String $package_client,
+  Boolean $service_refresh,
+  Boolean $service_enable,
+  Boolean $systemd,
+  String $service_ensure,
+  String $service_name,
+  String $user,
+  String $group,
+  Boolean $manage_user,
+  String $listen_host,
+  Integer $listen_port,
+  Integer $refresh,
+  String $server_dir,
+  String $config_dir,
+  String $config_file,
+  Optional[String] $virtualenv,
+  Optional[String] $proxy,
+  Optional[String] $ldap_connection,
+  Optional[String] $ldap_user_filter,
+  Optional[String] $ldap_group_base,
+  Optional[String] $ldap_group_filter,
+  Optional[String] $ldap_group_attr,
+) {
 
   anchor { '::devpi::start': }
   ->class { '::devpi::user': }

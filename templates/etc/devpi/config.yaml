@@ -1,12 +1,12 @@
 devpi-server:
-  serverdir: <%= @server_dir %>
-  secretfile: <%= @confif_dir %>/secret
-  host: <%= @listen_host %>
-  port: <%= @listen_port %>
+  serverdir: <%= scope['devpi::server_dir'] %>
+  secretfile: <%= scope['devpi::confif_dir'] %>/secret
+  host: <%= scope['devpi::listen_host'] %>
+  port: <%= scope['devpi::listen_port'] %>
 devpi-ldap:
-  url: <%= @ldap_connection %>
-  user_template: <%= @ldap_user_filter %>
+  url: <%= scope['devpi::ldap_connection'] %>
+  user_template: <%= scope['devpi::ldap_user_filter'] %>
   group_search:
-    base: <%= @ldap_group_base %>
-    filter: <%= @ldap_group_filter %>
-    attribute_name: <%= @ldap_group_attr %>
+    base: <%= scope['devpi::ldap_group_base'] %>
+    filter: <%= scope['devpi::ldap_group_filter'] %>
+    attribute_name: <%= scope['devpi::ldap_group_attr'] %>

@@ -1,14 +1,15 @@
+#= devpi::files
 class devpi::files {
 
-  $dir_ensure = $::devpi::ensure ? {
+  $dir_ensure = $devpi::ensure ? {
     present => directory,
-    default => $::devpi::ensure
+    default => $devpi::ensure
   }
 
-  file { $::devpi::server_dir:
+  file { $devpi::server_dir:
     ensure => $dir_ensure,
-    owner  => $::devpi::user,
-    group  => $::devpi::group,
+    owner  => $devpi::user,
+    group  => $devpi::group,
     mode   => '0700'
   }
 }

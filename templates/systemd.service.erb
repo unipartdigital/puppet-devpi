@@ -4,12 +4,12 @@ Wants=basic.target
 After=basic.target network.target
 
 [Service]
-User=<%= @user %>
-Group=<%= @group %>
-ExecStart=<%= @devpi_path %> -c  <%= @config_file %> --ldap-config  <%= @config_file %>
-<% if @proxy -%>
-Environment=http_proxy=<%= @proxy %>
-Environment=https_proxy=<%= @proxy %>
+User=<%= scope['devpi::user'] %>
+Group=<%= scope['devpi::group'] %>
+ExecStart=<%= scope['devpi::devpi_path'] %> -c  <%= scope['devpi::config_file'] %> --ldap-config  <%= scope['devpi::config_file'] %>
+<% if scope['devpi::proxy'] -%>
+Environment=http_proxy=<%= scope['devpi::proxy'] %>
+Environment=https_proxy=<%= scope['devpi::proxy'] %>
 <% end -%>
 
 [Install]

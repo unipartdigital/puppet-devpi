@@ -1,3 +1,4 @@
+#= devpi::systemd
 class devpi::systemd {
   exec { 'devpi_systemctl_daemon_reload':
     command     => 'systemctl daemon-reload',

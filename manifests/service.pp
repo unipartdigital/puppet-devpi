@@ -1,13 +1,14 @@
-class devpi::service inherits ::devpi::params {
+#= devpi::service
+class devpi::service {
 
-  $provider = $::devpi::params::systemd ? {
+  $provider = $devpi::systemd ? {
     true    => 'systemd',
     default => 'upstart'
   }
 
-  service { $::devpi::service_name:
-    ensure   => $::devpi::service_ensure,
-    enable   => $::devpi::service_enable,
+  service { $devpi::service_name:
+    ensure   => $devpi::service_ensure,
+    enable   => $devpi::service_enable,
     provider => $provider
   }
 
