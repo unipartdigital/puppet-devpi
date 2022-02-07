@@ -1,6 +1,6 @@
 devpi-server:
   serverdir: <%= scope['devpi::server_dir'] %>
-  secretfile: <%= scope['devpi::confif_dir'] %>/secret
+  secretfile: <%= scope['devpi::config_dir'] %>/secret
   host: <%= scope['devpi::listen_host'] %>
   port: <%= scope['devpi::listen_port'] %>
 devpi-ldap:
