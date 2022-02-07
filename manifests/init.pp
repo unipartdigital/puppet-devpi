@@ -92,6 +92,8 @@ class devpi (
   Optional[String] $ldap_group_filter,
   Optional[String] $ldap_group_attr,
 ) {
+  require python
+
   contain ::devpi::user
   contain ::devpi::package
   contain ::devpi::config
