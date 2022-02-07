@@ -6,7 +6,7 @@ After=basic.target network.target
 [Service]
 User=<%= scope['devpi::user'] %>
 Group=<%= scope['devpi::group'] %>
-ExecStart=<%= scope['devpi::devpi_path'] %> -c  <%= scope['devpi::config_file'] %> --ldap-config  <%= scope['devpi::config_file'] %>
+ExecStart=<%= scope['devpi::exec_path'] %> -c  <%= scope['devpi::config_file'] %> --ldap-config  <%= scope['devpi::config_file'] %>
 <% if scope['devpi::proxy'] -%>
 Environment=http_proxy=<%= scope['devpi::proxy'] %>
 Environment=https_proxy=<%= scope['devpi::proxy'] %>
