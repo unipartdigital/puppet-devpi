@@ -72,7 +72,6 @@ class devpi (
   String $package_client,
   Boolean $service_refresh,
   Boolean $service_enable,
-  Boolean $systemd,
   String $service_ensure,
   String $service_name,
   String $user,
@@ -93,30 +92,13 @@ class devpi (
   Optional[String] $ldap_group_attr = undef,
 ) {
 
-  anchor { '::devpi::start': }
-  ->class { '::devpi::user': }
-  ->class { '::devpi::config': }
-  ->class { '::devpi::files': }
-  ->class { '::devpi::service': }
-  ->anchor { '::devpi::end': }
+  contain ::devpi::user
+  contain ::devpi::package
+  contain ::devpi::config
+  contain ::devpi::files
+  contain ::devpi::service
 
-  if empty($virtualenv) {
-    Class['::devpi::user']
-    ->class { '::devpi::package': }
-    ->Class['::devpi::config']
-  } else {
-    validate_absolute_path($virtualenv)
-  }
-
-  if $service_refresh {
-    Class['::devpi::config']
-    ~>Class['::devpi::service']
-  }
-
-  if $::devpi::params::systemd {
-    Class['::devpi::config']
-    ~>class {'::devpi::systemd': }
-    ->Class['::devpi::service']
-  }
+  Class['::devpi::config']
+  ~>Class['::devpi::service']
 
 }

@@ -1,5 +1,6 @@
 #= devpi::files
 class devpi::files {
+  require devpi::config
 
   $dir_ensure = $devpi::ensure ? {
     present => directory,

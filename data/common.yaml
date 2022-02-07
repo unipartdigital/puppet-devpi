@@ -4,7 +4,6 @@ devpi::client: false
 devpi::package_client: devpi-client
 devpi::service_refresh: true
 devpi::service_enable: true
-devpi::systemd: true
 devpi::service_ensure: running
 devpi::service_name: devpi-server
 devpi::user: devpi

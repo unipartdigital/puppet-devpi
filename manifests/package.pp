@@ -5,6 +5,7 @@
 # TODO: add LDAP functionality
 # TODO: generalised plugin functionality
 class devpi::package {
+  require devpi::user
 
   package { $devpi::package_name:
     ensure   => $devpi::ensure,
