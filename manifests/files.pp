@@ -13,4 +13,11 @@ class devpi::files {
     group  => $devpi::group,
     mode   => '0700'
   }
+
+  exec { 'devpi-init':
+    command => '/usr/local/bin/devpi-init',
+    user    => $devpi::user,
+    creates => "${devpi::server_dir}/.nodeinfo",
+    require => File[$devpi::server_dir]
+  }
 }
