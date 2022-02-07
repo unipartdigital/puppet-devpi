@@ -78,6 +78,7 @@ class devpi (
   String $config_dir,
   String $config_file,
   String $exec_path,
+  String $secret,
   Integer $listen_port,
   Integer $refresh,
   Boolean $manage_user,
